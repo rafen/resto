@@ -4,27 +4,20 @@ from django.core.urlresolvers import reverse
 from rest_framework.test import APIClient
 from rest_framework import status
 from restaurants.factories import UserFactory, RestaurantFactory, VisitFactory
+from restaurants.tests.base import BaseAPITestCase
 
 RESTAURANT_BATCH = 4
 
 
-
-class RestaurantsTest(TestCase):
+class RestaurantsTest(BaseAPITestCase):
 
     def setUp(self):
-        self.client = APIClient()
-        # Create a super user
-        self.user = UserFactory.create()
-        self.user.is_superuser = True
-        self.user.save()
+        super(RestaurantsTest, self).setUp()
         # Create a batch of restaurants
         self.restaurants = RestaurantFactory.create_batch(RESTAURANT_BATCH)
         [r.save() for r in self.restaurants]
         # Get views urls
         self.restaurant_url = reverse('restaurant-list')
-
-    def _login(self):
-        self.client.login(username=self.user.username, password='password')
 
     def test_restaurant_list_filter_by_active(self):
         # Make one restaurant inactive
@@ -48,7 +41,7 @@ class RestaurantsTest(TestCase):
         })
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-    def test_restaurant_visitors(self):
+    def test_restaurant_list_visitors(self):
         # Create a visit to a restaurant
         restaurant = self.restaurants[0]
         visit = VisitFactory.create(restaurant=restaurant)
