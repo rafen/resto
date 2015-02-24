@@ -35,3 +35,21 @@ class Visit(models.Model):
 
     def __unicode__(self):
         return u'%s (%s)' % (self.user, self.created)
+
+
+class Comment(models.Model):
+    """
+    Custom comment model specific for Restaurant.
+    Let's keep it simple and stupid.
+    """
+    user = models.ForeignKey(User)
+    restaurant = models.ForeignKey(Restaurant, related_name='comments')
+    comment = models.TextField()
+    created = models.DateTimeField(auto_now_add=True, editable=False)
+
+    class Meta:
+        ordering = ['-created']
+
+    def __unicode__(self):
+        return u'%s - %s' % (self.user, self.restaurant)
+

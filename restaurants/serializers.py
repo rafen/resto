@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import routers, serializers, viewsets
-from restaurants.models import Restaurant, Visit
+from restaurants.models import Restaurant, Visit, Comment
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -19,8 +19,19 @@ class VisitRelatedSerializer(VisitSerializer):
     user = UserSerializer(many=False, read_only=True)
 
 
+class CommentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Comment
+        fields = ('id', 'user', 'restaurant', 'comment', 'created')
+
+
+class CommentRelatedSerializer(CommentSerializer):
+    user = UserSerializer(many=False, read_only=True)
+
+
 class RestaurantSerializer(serializers.ModelSerializer):
     visitors = VisitRelatedSerializer(many=True, read_only=True)
+    comments = CommentRelatedSerializer(many=True, read_only=True)
     class Meta:
         model = Restaurant
-        fields = ('id', 'name', 'description', 'visitors')
+        fields = ('id', 'name', 'description', 'visitors', 'comments')

@@ -1,7 +1,7 @@
 import factory
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from restaurants.models import Restaurant, Visit
+from restaurants.models import Restaurant, Visit, Comment
 
 
 class UserFactory(factory.django.DjangoModelFactory):
@@ -28,3 +28,12 @@ class VisitFactory(factory.Factory):
 
     class Meta:
         model = Visit
+
+
+class CommentFactory(factory.Factory):
+    user = factory.SubFactory(UserFactory)
+    restaurant = factory.SubFactory(RestaurantFactory)
+    comment = factory.Sequence(lambda n: 'Comment %d' % n)
+
+    class Meta:
+        model = Comment
