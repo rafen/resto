@@ -10,7 +10,7 @@ class RestaurantListView(ListView):
     It will render a basic html page as a landing page.
     """
     context_object_name = 'restaurant_list'
-    queryset = Restaurant.objects.filter(active=True)
+    queryset = Restaurant.objects.filter(active=True)[:50]
     template_name = "index.html"
 
 
@@ -36,3 +36,4 @@ class CommentViewSet(viewsets.ModelViewSet):
     """
     queryset = Comment.objects.filter(restaurant__active=True)
     serializer_class = CommentSerializer
+

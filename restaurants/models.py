@@ -1,14 +1,22 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
+from vote.managers import VotableManager
 
 
 class Restaurant(models.Model):
+    # The identifier field is used for to detect and prevent duplicated
+    # during the import process
+    identifier = models.CharField(max_length=256)
     name = models.CharField(max_length=256)
+    address = models.CharField(max_length=512, blank=True, null=True)
+    telephone = models.CharField(max_length=128, blank=True, null=True)
+    website = models.URLField(blank=True, null=True)
     picture = models.ImageField(blank=True, null=True)
     active = models.BooleanField(blank=True, default=True)
     description = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
+    votes = VotableManager()
 
     class Meta:
         ordering = ['-id']

@@ -34,4 +34,5 @@ class RestaurantSerializer(serializers.ModelSerializer):
     comments = CommentRelatedSerializer(many=True, read_only=True)
     class Meta:
         model = Restaurant
-        fields = ('id', 'name', 'description', 'visitors', 'comments')
+        fields = ('id', 'name', 'address', 'telephone', 'website',
+            'description', 'visitors', 'comments')

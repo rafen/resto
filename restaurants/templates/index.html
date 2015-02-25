@@ -10,10 +10,27 @@
 
 <h2>List of restaurants</h2>
 
-<ul>
-{% for restaurant in restaurant_list %}
-	<li>{{restaurant.name}}</li>
-{% endfor %}
-</ul>
+<table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Telephone</th>
+        <th>Website</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for restaurant in restaurant_list %}
+          <tr>
+            <th scope="row">{{restaurant.id}}</th>
+            <td>{{restaurant.name}}</td>
+            <td>{{restaurant.address|default:'-'}}</td>
+            <td>{{restaurant.telephone|default:'-'}}</td>
+            <td><a href="{{restaurant.website}}">{{restaurant.website|default:'-'}}</a></td>
+          </tr>
+    {% endfor %}
+    </tbody>
+</table>
 
 {% endblock content %}
