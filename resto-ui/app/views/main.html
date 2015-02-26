@@ -1,0 +1,65 @@
+<div data-ng-controller="RestaurantsCtrl">
+
+<h4>Restaurants</h4>
+
+<table class="table" >
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Votes</th>
+        <th>Visitors</th>
+        <th>Rating</th>
+        <th>Website</th>
+      </tr>
+    </thead>
+    <tbody>
+          <tr data-ng-repeat="restaurant in restaurants">
+            <th scope="row">{{restaurant.id}}</th>
+            <td><a data-ng-click="showDetails(restaurant)">{{restaurant.name}}</a></td>
+            <td>{{restaurant.votes}}</td>
+            <td>{{restaurant.visitors.length}}</td>
+            <td>{{restaurant.rating}}</td>
+            <td><a href="{{restaurant.website}}">{{restaurant.website}}</a></td>
+          </tr>
+    </tbody>
+</table>
+
+
+<nav>
+  <ul class="pager">
+    <li><a data-ng-click="previous()">Previous</a></li>
+    <li><a data-ng-click="next()">Next</a></li>
+  </ul>
+</nav>
+
+
+
+<!-- Modal -->
+<div data-ng-show="details">
+
+  <h2>{{details.name}}</h2>
+  <p><strong>Address:</strong> {{details.address}}</p>
+  <p><strong>Phone:</strong> {{details.telephone}}</p>
+  <p><strong>Description:</strong> {{details.description}}</p>
+  <p><strong>Votes:</strong> {{details.votes}}</p>
+  <p><strong>Rating:</strong> {{details.rating}}</p>
+
+  <div data-ng-show="details.visitors">
+    <h4>Visitors</h4>
+    <div data-ng-repeat="visitor in details.visitors">
+      <p>{{visitor.user.username}}</p>
+    </div>
+  </div>
+
+  <div data-ng-show="details.comments">
+    <h4>Comments</h4>
+    <div data-ng-repeat="comment in details.comments">
+      <p>{{comment.user.username}}</p>
+      <p>{{comment.comment}}</p>
+    </div>
+  </div>
+
+</div>
+
+</div>
