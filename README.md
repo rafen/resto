@@ -31,8 +31,32 @@ Run a local test server:
 
     $ ./manage.py runserver
 
-Visti test landing page by opening your browser at localhost:8000
+Visit the backend test landing page by opening your browser at localhost:8000
 
+
+### Frontend App for testing:
+In resto-ui folder you will find the frontend app to test the application.
+To install it and run it you need to:
+
+Enter to the folder:
+
+    $ cd resto-ui
+
+Install dependencies:
+
+    $ npm install
+    $ bower install
+
+You might need to upgrade your compass gem. In that case run:
+
+    $ sudo gem install compass --pre
+
+
+Then run the app with grunt:
+
+    $ grunt serve
+
+Note: you need to have the Django App running on a different terminal to see the Front-end app working.
 
 ## Import Restaurants into the system
 Factual.com is used to get the restaurant information.
