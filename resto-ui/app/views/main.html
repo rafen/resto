@@ -1,6 +1,6 @@
 <div data-ng-controller="RestaurantsCtrl">
 
-<h4>Restaurants</h4>
+<h4 id="restaurant-search">Restaurants</h4>
 
 <table class="table" >
     <thead>
@@ -34,31 +34,52 @@
 </nav>
 
 
+<hr>
+<h2>Restaurant Details</h2>
+<hr>
+
+<div id="restaurant-details">
+  <h1>{{details.name}}</h1>
+
+  <p>
+    <button type="button" class="btn btn-default" data-ng-click="voteUp()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+    <button type="button" class="btn btn-default" data-ng-click="voteDown()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
+    <button type="button" class="btn btn-default" data-ng-click="comment(details)"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
+    <button type="button" class="btn btn-default" data-ng-click="visit(details)"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> been there</button>
+  </p>
+
+  <div class="container">
+
+    <p><strong>Address:</strong> {{details.address}}</p>
+    <p><strong>Phone:</strong> {{details.telephone}}</p>
+    <p><strong>Description:</strong> {{details.description}}</p>
+    <p><strong>Votes:</strong> {{details.votes}}</p>
+    <p><strong>Rating:</strong> {{details.rating}}</p>
+
+    <div data-ng-show="details.visitors">
+      <h4>Visitors</h4>
+      <div data-ng-repeat="visitor in details.visitors">
+        <p>{{visitor.user.username}}</p>
+      </div>
+    </div>
+
+    <div data-ng-show="details.comments">
+      <h4>Comments</h4>
+      <div data-ng-repeat="comment in details.comments">
+        <p>{{comment.user.username}}</p>
+        <p>{{comment.comment}}</p>
+      </div>
+    </div>
+
+  </div>
+  <p><a class="btn btn-default" data-ng-click="gotoSearch()" role="button">More restaurants</a></p>
+
+
+</div>
 
 <!-- Modal -->
 <div data-ng-show="details">
 
-  <h2>{{details.name}}</h2>
-  <p><strong>Address:</strong> {{details.address}}</p>
-  <p><strong>Phone:</strong> {{details.telephone}}</p>
-  <p><strong>Description:</strong> {{details.description}}</p>
-  <p><strong>Votes:</strong> {{details.votes}}</p>
-  <p><strong>Rating:</strong> {{details.rating}}</p>
-
-  <div data-ng-show="details.visitors">
-    <h4>Visitors</h4>
-    <div data-ng-repeat="visitor in details.visitors">
-      <p>{{visitor.user.username}}</p>
-    </div>
-  </div>
-
-  <div data-ng-show="details.comments">
-    <h4>Comments</h4>
-    <div data-ng-repeat="comment in details.comments">
-      <p>{{comment.user.username}}</p>
-      <p>{{comment.comment}}</p>
-    </div>
-  </div>
 
 </div>
 
