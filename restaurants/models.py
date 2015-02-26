@@ -16,16 +16,17 @@ class Restaurant(models.Model):
     active = models.BooleanField(blank=True, default=True)
     description = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
+    rating = models.IntegerField(blank=True, null=True)
     votes = VotableManager()
 
     class Meta:
-        ordering = ['-id']
+        ordering = ['id']
 
     def __unicode__(self):
         return u'%s (%s)' % (slugify(self.name), self.id)
 
-    # def get_absolute_url(self):
-    #     return reverse('detail_image_study', args=[str(self.id)])
+    def votes_count(self):
+        return self.votes.count()
 
 
 class Visit(models.Model):

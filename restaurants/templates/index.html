@@ -6,7 +6,10 @@
 	<p class="lead">Let's find a good restaurant</p>
 </div>
 
-<h3>See our API <a href="{% url "restaurant-list" %}">here</a> </h2>
+<h3>See our API <a href="{% url "django.swagger.base.view" %}">here</a></h3>
+
+<h3>See admin interface <a href="/admin">here</a></h3>
+
 
 <h2>List of restaurants</h2>
 
@@ -32,5 +35,7 @@
     {% endfor %}
     </tbody>
 </table>
+
+<p>To see the complete list, please use the API services</p>
 
 {% endblock content %}

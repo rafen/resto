@@ -32,7 +32,14 @@ class CommentRelatedSerializer(CommentSerializer):
 class RestaurantSerializer(serializers.ModelSerializer):
     visitors = VisitRelatedSerializer(many=True, read_only=True)
     comments = CommentRelatedSerializer(many=True, read_only=True)
+    votes = serializers.IntegerField(source='votes.count', read_only=True)
+
     class Meta:
         model = Restaurant
         fields = ('id', 'name', 'address', 'telephone', 'website',
-            'description', 'visitors', 'comments')
+            'description', 'visitors', 'comments', 'votes', 'rating')
+
+
+class RestaurantVoteSerializer(serializers.Serializer):
+    # True for Up, False for Down
+    vote = serializers.BooleanField()

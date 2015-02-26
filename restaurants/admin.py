@@ -8,7 +8,7 @@ class VisitInline(admin.StackedInline):
 
 
 class RestaurantAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'address', 'telephone', 'website')
+    list_display = ('id', 'name', 'address', 'telephone', 'website', 'rating', 'votes_count')
     list_display_links = ('id', 'name')
     search_fields = ('name', 'description')
     list_filter = ('active', 'created')
