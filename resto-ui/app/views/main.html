@@ -35,39 +35,39 @@
 
 
 <hr>
-<h2>Restaurant Details</h2>
 <hr>
 
 <div id="restaurant-details">
   <h1>{{details.name}}</h1>
-
-  <p>
-    <button type="button" class="btn btn-default" data-ng-click="voteUp()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
-    <button type="button" class="btn btn-default" data-ng-click="voteDown()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
-    <button type="button" class="btn btn-default" data-ng-click="visit()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> been there</button>
-  </p>
+  <hr>
 
   <div class="container">
 
     <p><strong>Address:</strong> {{details.address}}</p>
     <p><strong>Phone:</strong> {{details.telephone}}</p>
     <p><strong>Description:</strong> {{details.description}}</p>
-    <p><strong>Votes:</strong> {{details.votes}}</p>
     <p><strong>Rating:</strong> {{details.rating}}</p>
+    <hr>
+    <p>
+      <strong>Votes:</strong> {{details.votes}}
 
+      <button type="button" class="btn btn-default" data-ng-click="voteUp()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
+      <button type="button" class="btn btn-default" data-ng-click="voteDown()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
+    </p>
 
-    <div data-ng-show="details.visitors">
-    <h4>Visitors</h4>
-
+    <hr>
+    <h4>Visits</h4>
+    <p>
       <span class="label" data-ng-repeat="visitor in details.visitors"
         data-ng-class="getVisitorClass(visitor)">
         {{visitor.user.username}}
       </span>
+    </p>
 
-    </div>
+    <button type="button" class="btn btn-default" data-ng-click="visit()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> been there</button>
 
+    <hr>
     <h4>Comments</h4>
-
     <div data-ng-show="details.comments">
       <div class="panel" data-ng-repeat="comment in details.comments"
         data-ng-class="getCommentClass(comment)">
