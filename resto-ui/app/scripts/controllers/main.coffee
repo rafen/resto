@@ -69,7 +69,32 @@ angular.module 'restoApp'
             $http.post(url, {'user': $scope.user.id, 'restaurant': $scope.details.id})
                 .success (response) ->
                     response['user'] = $scope.user
-                    $scope.details.visitors.push(response)
+                    $scope.details.visitors.unshift(response)
+
+        # Add comment
+        $scope.addComment = (newComment) ->
+            url = 'http://localhost:8000/restaurants/comments/'
+            $http.post(url,
+                'user': $scope.user.id
+                'restaurant': $scope.details.id
+                'comment': newComment
+            ).success (response) ->
+                response['user'] = $scope.user
+                $scope.details.comments.unshift(response)
+
+        # Set class to comments depending the owner
+        $scope.getCommentClass = (comment) ->
+            if comment.user.id == $scope.user.id
+                return 'panel-info'
+            else
+                return 'panel-default'
+
+        # Set class to visitors depending the owner
+        $scope.getVisitorClass = (visitor) ->
+            if visitor.user.id == $scope.user.id
+                return 'label-info'
+            else
+                return 'label-default'
 
 
         # Add csrf token in http methods

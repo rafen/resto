@@ -44,7 +44,6 @@
   <p>
     <button type="button" class="btn btn-default" data-ng-click="voteUp()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
     <button type="button" class="btn btn-default" data-ng-click="voteDown()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
-    <button type="button" class="btn btn-default" data-ng-click="comment()"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
     <button type="button" class="btn btn-default" data-ng-click="visit()"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> been there</button>
   </p>
 
@@ -56,18 +55,40 @@
     <p><strong>Votes:</strong> {{details.votes}}</p>
     <p><strong>Rating:</strong> {{details.rating}}</p>
 
+
     <div data-ng-show="details.visitors">
-      <h4>Visitors</h4>
-      <div data-ng-repeat="visitor in details.visitors">
-        <p>{{visitor.user.username}}</p>
+    <h4>Visitors</h4>
+
+      <span class="label" data-ng-repeat="visitor in details.visitors"
+        data-ng-class="getVisitorClass(visitor)">
+        {{visitor.user.username}}
+      </span>
+
+    </div>
+
+    <h4>Comments</h4>
+
+    <div data-ng-show="details.comments">
+      <div class="panel" data-ng-repeat="comment in details.comments"
+        data-ng-class="getCommentClass(comment)">
+        <!-- Default panel contents -->
+        <div class="panel-heading">{{comment.user.username}}</div>
+        <div class="panel-body">
+          <p>{{comment.comment}}</p>
+        </div>
       </div>
     </div>
 
     <div data-ng-show="details.comments">
-      <h4>Comments</h4>
-      <div data-ng-repeat="comment in details.comments">
-        <p>{{comment.user.username}}</p>
-        <p>{{comment.comment}}</p>
+      <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Add a new comment</div>
+        <div class="panel-body">
+          <textarea rows="4" cols="50" data-ng-model="newComment"></textarea>
+          <p>
+            <button type="button" class="btn btn-default" data-ng-click="addComment(newComment)">Submit <span class="glyphicon glyphicon-comment" aria-hidden="true"></span></button>
+          </p>
+        </div>
       </div>
     </div>
 
