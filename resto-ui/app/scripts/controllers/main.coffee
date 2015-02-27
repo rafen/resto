@@ -16,8 +16,8 @@ angular.module 'restoApp'
                 .success (response) ->
                     $scope.user = response
                 .error (data, status, headers, config) ->
-                    $scope.user = null
-
+                    $scope.user =
+                        id: 0
         # Restaurants Pagination update
         $scope.update = (url) ->
             $http.get(url)
