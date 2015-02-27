@@ -10,15 +10,13 @@ try:
     XS_SHARING_ALLOWED_ORIGINS = settings.XS_SHARING_ALLOWED_ORIGINS
     XS_SHARING_ALLOWED_METHODS = settings.XS_SHARING_ALLOWED_METHODS
 except:
-    XS_SHARING_ALLOWED_ORIGINS = '*'
+    XS_SHARING_ALLOWED_ORIGINS = 'http://localhost:9000'
     XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']
 
 
 class XsSharing(object):
     """
         This middleware allows cross-domain XHR using the html5 postMessage API.
-
-
         Access-Control-Allow-Origin: http://foo.example
         Access-Control-Allow-Methods: POST, GET, OPTIONS, PUT, DELETE
     """
@@ -28,8 +26,8 @@ class XsSharing(object):
             response = http.HttpResponse()
             response['Access-Control-Allow-Origin']  = XS_SHARING_ALLOWED_ORIGINS
             response['Access-Control-Allow-Methods'] = ",".join( XS_SHARING_ALLOWED_METHODS )
-            response['Access-Control-Allow-Headers'] = "Origin, X-Requested-With, Content-Type, Accept"
-
+            response['Access-Control-Allow-Headers'] = "Origin, X-Requested-With, Content-Type, Accept, authorization, X-CSRFToken"
+            response['Access-Control-Allow-Credentials'] = 'true'
             return response
 
         return None
@@ -41,5 +39,6 @@ class XsSharing(object):
 
         response['Access-Control-Allow-Origin']  = XS_SHARING_ALLOWED_ORIGINS
         response['Access-Control-Allow-Methods'] = ",".join( XS_SHARING_ALLOWED_METHODS )
+        response['Access-Control-Allow-Credentials'] = 'true'
 
         return response

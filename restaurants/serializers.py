@@ -6,7 +6,7 @@ from restaurants.models import Restaurant, Visit, Comment
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email')
+        fields = ('id', 'username', 'email')
 
 
 class VisitSerializer(serializers.ModelSerializer):
