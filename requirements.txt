@@ -7,3 +7,4 @@ factory-boy==2.4.1
 django-vote==1.2
 django-rest-swagger==0.2.8
 factual-api==1.6.0
+mock==1.0.1

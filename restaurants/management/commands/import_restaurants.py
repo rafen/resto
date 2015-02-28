@@ -12,16 +12,30 @@ BATCH = 50
 class Command(BaseCommand):
     help = 'This command will import all restaurants from Factual.com'
 
+    def map_data_restaurant(self, resto, data):
+        """
+        Map data from factual to Restaurant model
+        """
+        resto.name = data.get('name')
+        resto.address = data.get('address')
+        resto.telephone = data.get('tel')
+        resto.website = data.get('website')
+        resto.description = ', '.join(data.get('cuisine') or [])
+        resto.rating = data.get('rating')
+        resto.save()
+
+
     def handle(self, *args, **options):
         factual = Factual(KEY, SECRET)
-        # {"$and":[{"country":{"$eq":"US"}},{"region":{"$eq":"NY"}}]}
         restaurants_table = factual.table('restaurants-us')
 
+        # Get all restaurants from New York
+        # {"$and":[{"country":{"$eq":"US"}},{"region":{"$eq":"NY"}}]}
         query = restaurants_table.filters({'$and':[{'region':{'$eq':"NY"}}]}).include_count(True)
         total = query.total_row_count()
-        self.stdout.write('Ready to import %s restaurants, in %s requests' % (total, total/BATCH + total%BATCH))
-
-        for i in range(total/BATCH + total%BATCH):
+        cnt_requests = (total-1)/BATCH + 1
+        self.stdout.write('Ready to import %s restaurants, in %s requests' % (total, cnt_requests))
+        for i in range(cnt_requests):
             try:
                 data = query.offset(BATCH * i).limit(BATCH).data()
             except APIException as e:
@@ -30,15 +44,10 @@ class Command(BaseCommand):
                 self.stdout.write('API Error: %s' % e)
                 break
 
-            for restaurant in data:
+            for restoData in data:
                 # Get or created restaruant using factual id
-                resto, created = Restaurant.objects.get_or_create(identifier=restaurant.get('factual_id'))
+                resto, created = Restaurant.objects.get_or_create(identifier=restoData.get('factual_id'))
                 # Update restaurant with new values
-                resto.name = restaurant.get('name')
-                resto.address = restaurant.get('address')
-                resto.telephone = restaurant.get('tel')
-                resto.website = restaurant.get('website')
-                resto.description = ', '.join(restaurant.get('cuisine') or [])
-                resto.rating = restaurant.get('rating')
-                resto.save()
-            self.stdout.write('Successfully imported %s restaurants' % (BATCH*i))
+                self.map_data_restaurant(resto, restoData)
+
+            self.stdout.write('Successfully imported %s restaurants' % total)

@@ -16,7 +16,7 @@ class Restaurant(models.Model):
     active = models.BooleanField(blank=True, default=True)
     description = models.TextField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True, editable=False)
-    rating = models.IntegerField(blank=True, null=True)
+    rating = models.FloatField(blank=True, null=True)
     votes = VotableManager()
 
     class Meta:
