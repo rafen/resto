@@ -87,11 +87,11 @@ angular.module 'restoApp'
 
         # Thumbs up for selected restaurant
         $scope.voteUp = ->
-            $scope.vote true
+            $scope.vote false
 
         # Thumbs up for selected restaurant
         $scope.voteDown = ->
-            $scope.vote false
+            $scope.vote true
 
         # Store user visit
         $scope.visit = ->

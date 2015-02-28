@@ -33,10 +33,10 @@
       <tr>
         <th><a data-ng-click="doOrdering('id')">#</a></th>
         <th><a data-ng-click="doOrdering('name')">Name</a></th>
-        <th><a data-ng-click="doOrdering('-votes')">Votes</a></th>
-        <th>Visitors</th>
-        <th><a data-ng-click="doOrdering('-rating')">Rating</a></th>
-        <th>Website</th>
+        <th><a data-ng-click="doOrdering('votes')"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></a></th>
+        <th><span class="glyphicon glyphicon-user" aria-hidden="true"></span></th>
+        <th><a data-ng-click="doOrdering('-rating')"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></a></th>
+        <th><span class="glyphicon glyphicon-link" aria-hidden="true"></span></th>
       </tr>
     </thead>
     <tbody>
@@ -53,13 +53,20 @@
 
 
 <nav>
-  <ul class="pager">
-    <li><a data-ng-click="previous()">Previous</a></li>
-    <li><a data-ng-click="next()">Next</a></li>
+  <ul class="pagination">
+    <li>
+      <a data-ng-click="previous()" aria-label="Previous">
+        <span aria-hidden="true">&laquo; Previous</span>
+      </a>
+    </li>
+    <li class="disabled"><span data-ng-bind="'Total: '+response.count"></span></li>
+    <li>
+      <a data-ng-click="next()" aria-label="Next">
+        <span aria-hidden="true">Next &raquo;</span>
+      </a>
+    </li>
   </ul>
-  <p>Restaurants: <span data-ng-bind="response.count"></span><p>
 </nav>
-
 
 <hr>
 <hr>
@@ -76,10 +83,10 @@
     <p><strong>Rating:</strong> {{details.rating}}</p>
     <hr>
     <p>
-      <strong>Votes:</strong> {{details.votes}}
+      <strong>Thumbs Down Counter:</strong> {{details.votes}}
 
-      <button type="button" class="btn btn-default" data-ng-click="voteUp()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
       <button type="button" class="btn btn-default" data-ng-click="voteDown()"><span class="glyphicon glyphicon-thumbs-down" aria-hidden="true"></span></button>
+      <button type="button" class="btn btn-default" data-ng-click="voteUp()"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span></button>
     </p>
 
     <hr>
