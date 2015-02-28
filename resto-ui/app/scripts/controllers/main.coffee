@@ -10,6 +10,10 @@
 angular.module 'restoApp'
     .controller 'RestaurantsCtrl', ($scope, $http, $location, $anchorScroll, $cookies) ->
 
+        restaurantsUrl = 'http://localhost:8000/restaurants/restaurants/'
+        $scope.orderingParam = ''
+        $scope.searchParam = ''
+
         # Get current User
         $scope.getCurrentUser = ->
             $http.get('http://localhost:8000/restaurants/current-user/')
@@ -18,6 +22,24 @@ angular.module 'restoApp'
                 .error (data, status, headers, config) ->
                     $scope.user =
                         id: 0
+
+        # Search
+        $scope.doSearch = ->
+            $scope.searchParam = $scope.searchText
+            $scope.updateUrl()
+
+        # Ordering
+        $scope.doOrdering = (param) ->
+            if param != $scope.orderingParam
+                $scope.orderingParam = param
+            else
+                $scope.orderingParam = ''
+            $scope.updateUrl()
+
+        # Update Url
+        $scope.updateUrl = ->
+            $scope.update(restaurantsUrl+'?search='+$scope.searchParam+'&ordering='+$scope.orderingParam)
+
         # Restaurants Pagination update
         $scope.update = (url) ->
             $http.get(url)
@@ -41,13 +63,21 @@ angular.module 'restoApp'
         # Show Restaurant details
         $scope.showDetails = (restaurant) ->
             $scope.details = restaurant
+            # Save old Anchor to restore it later
+            old = $location.hash()
             $location.hash 'restaurant-details'
             $anchorScroll()
+            # After scroll set original anchor
+            $location.hash(old)
 
         # Show Search results
         $scope.gotoSearch = ->
+            # Save old Anchor to restore it later
+            old = $location.hash()
             $location.hash 'restaurant-search'
             $anchorScroll()
+            # After scroll set original anchor
+            $location.hash(old)
 
         $scope.vote = (v) ->
             url = 'http://localhost:8000/restaurants/vote/'+$scope.details.id+'/'
@@ -102,6 +132,6 @@ angular.module 'restoApp'
         $http.defaults.headers.post['X-CSRFToken'] = $cookies.csrftoken
         $http.defaults.withCredentials = true
         # Load Initial data of the table
-        $scope.update 'http://localhost:8000/restaurants/restaurants/'
+        $scope.update restaurantsUrl
         # Get current user
         $scope.getCurrentUser()

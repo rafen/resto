@@ -6,18 +6,12 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
     <!-- Search -->
-    <form class="navbar-form navbar-left" role="search">
+    <form class="navbar-form navbar-left" role="search" data-ng-submit="doSearch()">
       <div class="form-group">
-        <input type="text" class="form-control" placeholder="Search">
+        <input type="text" class="form-control" placeholder="Search" data-ng-model="searchText">
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
-
-    <!-- Categories -->
-    <ul class="nav navbar-nav">
-      <li><a>Link</a></li>
-      <li><a>Link</a></li>
-    </ul>
 
       <!-- User -->
       <div data-ng-show="user.id">
@@ -37,11 +31,11 @@
 <table class="table" >
     <thead>
       <tr>
-        <th>#</th>
-        <th>Name</th>
-        <th>Votes</th>
+        <th><a data-ng-click="doOrdering('id')">#</a></th>
+        <th><a data-ng-click="doOrdering('name')">Name</a></th>
+        <th><a data-ng-click="doOrdering('-votes')">Votes</a></th>
         <th>Visitors</th>
-        <th>Rating</th>
+        <th><a data-ng-click="doOrdering('-rating')">Rating</a></th>
         <th>Website</th>
       </tr>
     </thead>
@@ -63,6 +57,7 @@
     <li><a data-ng-click="previous()">Previous</a></li>
     <li><a data-ng-click="next()">Next</a></li>
   </ul>
+  <p>Restaurants: <span data-ng-bind="response.count"></span><p>
 </nav>
 
 

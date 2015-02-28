@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.views.generic import ListView
 from django.http import Http404
-from rest_framework import routers, serializers, viewsets, status, permissions
+from rest_framework import routers, serializers, viewsets, status, permissions, filters
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from restaurants.models import Restaurant, Visit, Comment
@@ -48,6 +48,9 @@ class RestaurantViewSet(viewsets.ModelViewSet):
     """
     queryset = Restaurant.objects.filter(active=True)
     serializer_class = RestaurantSerializer
+    filter_backends = (filters.SearchFilter, filters.OrderingFilter)
+    search_fields = ('name', 'description')
+    ordering_fields = ('id', 'name', 'votes', 'rating')
 
 
 class VisitViewSet(viewsets.ModelViewSet):
