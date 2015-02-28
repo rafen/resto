@@ -45,6 +45,17 @@ class UserViewSet(viewsets.ModelViewSet):
 class RestaurantViewSet(viewsets.ModelViewSet):
     """
     API view that display/manage the list of Restaurants
+    ---
+    list:
+        parameters:
+            - name: search
+              paramType: query
+              description: terms to search in name and description fields
+              required: false
+            - name: ordering
+              paramType: query
+              description: fileds to order by. Allowed fields are id, name, vote, rating
+              required: false
     """
     queryset = Restaurant.objects.filter(active=True)
     serializer_class = RestaurantSerializer
