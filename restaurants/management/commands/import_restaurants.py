@@ -50,4 +50,4 @@ class Command(BaseCommand):
                 # Update restaurant with new values
                 self.map_data_restaurant(resto, restoData)
 
-            self.stdout.write('Successfully imported %s restaurants' % total)
+            self.stdout.write('Successfully imported batch %s of restaurants' % i)
