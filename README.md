@@ -1,4 +1,4 @@
-# resto
+# Resto
 A restaurant app for fueled (test)
 
 
@@ -84,15 +84,15 @@ To run the backend test just type:
 
 
 ## Technology
-Django and Python are used in the backend.
-Django Rest Framework is used to build the API.
-Django Swagger was installed to provide a better documentation for the API.
-Django-vote is used to manage the thumbs down functionality.
-Factory-boy is used to simplify the testing of the models, and can be used in the future for performance tests.
-Factual app is used as an adapter to communicate with Factual.com API and retreive the restaurants (see section "Import Restaurants into the system" for more information about why using Factual).
-Yeoman was used to start the frontend app.
-Angular and coffee script are used to code the app.
-Grunt was used during the development of the frontend app, and also for the distribution of it.
+ * Django and Python are used in the backend.
+ * Django Rest Framework is used to build the API.
+ * Django Swagger was installed to provide a better documentation for the API.
+ * Django-vote is used to manage the thumbs down functionality.
+ * Factory-boy is used to simplify the testing of the models, and can be used in the future for performance tests.
+ * Factual app is used as an adapter to communicate with Factual.com API and retreive the restaurants (see section "Import Restaurants into the system" for more information about why using Factual).
+ * Yeoman was used to start the frontend app.
+ * Angular and coffee script are used to code the app.
+ * Grunt was used during the development of the frontend app, and also for the distribution of it.
 
 
 ## About the API
