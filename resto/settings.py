@@ -101,4 +101,4 @@ REST_FRAMEWORK = {
     'MAX_PAGINATE_BY': 100,            # Maximum limit allowed when using `?page_size=xxx`.
 }
 
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/static/ui/index.html'
