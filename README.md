@@ -5,19 +5,19 @@ A restaurant app for fueled (test)
 During lunchtime, the members of Fueled are faced with the problem of having too many restaurant venues to choose from. Make a Django app that helps us decide where the team should dine. Additionally the app should have the following
 
 ### Possible features:
-Keep track of visited restaurants.
-Ability to read/write reviews for a visited restaurant. Reviews are displayed on the restaurant page. A special symbol is displayed if it is your review.
-Other users can comment on reviews (no need for nested comments).
-Ability to thumbs-down a restaurant such that it is never considered as an option for dining.
-Extend the user profile and add some relevant functionality.
+ * Keep track of visited restaurants.
+ * Ability to read/write reviews for a visited restaurant. Reviews are displayed on the restaurant page. A special   * symbol is displayed if it is your review.
+ * Other users can comment on reviews (no need for nested comments).
+ * Ability to thumbs-down a restaurant such that it is never considered as an option for dining.
+ * Extend the user profile and add some relevant functionality.
 
 ## System Introduction
-The system is basically a Back-end application built on Django. There's also a Front-end app for testing and demostration porposes.
+The system is basically a Back-end application built on Django. There's also a Front-end app for testing and demostration purposes.
 
-### Back-end
-The backend is Django Site with a "restaurant" app that serves the different endpoints. It also provides a landing page that expose the different part and links of the system.
+### Back end
+The back end is Django Site with a "restaurant" app that serves the different endpoints. It also provides a landing page that exposes the differents parts and links of the system.
 
-### Front-end
+### Front end
 The client is a one page application built on Angular + Coffescript.
 
 ### Technology
@@ -25,8 +25,8 @@ The client is a one page application built on Angular + Coffescript.
  * Django Rest Framework is used to build the API.
  * Django Swagger was installed to provide a better documentation for the API.
  * Django-vote is used to manage the thumbs down functionality.
- * Factory-boy is used to simplify the testing of the models, and can be used in the future for performance tests.
- * Factual app is used as an adapter to communicate with Factual.com API and retreive the restaurants (see section "Import Restaurants into the system" for more information about why using Factual).
+ * Factory-boy is used to simplify the testing of the models, and it can be reused in the future for performance tests.
+ * Factual app is used as an adapter to communicate with Factual.com API and it retrieves the restaurants (see section "Import Restaurants into the system" for more information about why using Factual).
  * Yeoman was used to start the frontend app.
  * Angular and coffee script are used to code the app.
  * Grunt was used during the development of the frontend app, and also for the distribution of it.
@@ -34,7 +34,7 @@ The client is a one page application built on Angular + Coffescript.
 
 ## Dev Installation
 
-For this installation precedure we will assume that you have the following packeges already installed and configured in your system: python, [pip](https://pypi.python.org/pypi/pip), [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/)
+For this installation procedure we will assume that you have the following packages already installed and configured on your system: python, [pip](https://pypi.python.org/pypi/pip), [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/)
 
 Create a virtual env with virtualenvwrapper
 
@@ -177,5 +177,6 @@ Note: you need to have the Django App running on a different terminal to see the
   * Add functionality to edit/delete comments, visits, etc.
   * Add Google Map to show restaurants location in the details.
   * Add GeoSpatials search.
+ * Deployment
  * Etc
  
