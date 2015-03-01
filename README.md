@@ -1,10 +1,42 @@
 # Resto
 A restaurant app for fueled (test)
 
+## The Assignment
+During lunchtime, the members of Fueled are faced with the problem of having too many restaurant venues to choose from. Make a Django app that helps us decide where the team should dine. Additionally the app should have the following
+
+### Possible features:
+Keep track of visited restaurants.
+Ability to read/write reviews for a visited restaurant. Reviews are displayed on the restaurant page. A special symbol is displayed if it is your review.
+Other users can comment on reviews (no need for nested comments).
+Ability to thumbs-down a restaurant such that it is never considered as an option for dining.
+Extend the user profile and add some relevant functionality.
+
+## System Introduction
+The system is basically a Back-end application built on Django. There's also a Front-end app for testing and demostration porposes.
+
+### Back-end
+The backend is Django Site with a "restaurant" app that serves the different endpoints. It also provides a landing page that expose the different part and links of the system.
+
+### Front-end
+The client is a one page application built on Angular + Coffescript.
+
+### Technology
+ * Django and Python are used in the backend.
+ * Django Rest Framework is used to build the API.
+ * Django Swagger was installed to provide a better documentation for the API.
+ * Django-vote is used to manage the thumbs down functionality.
+ * Factory-boy is used to simplify the testing of the models, and can be used in the future for performance tests.
+ * Factual app is used as an adapter to communicate with Factual.com API and retreive the restaurants (see section "Import Restaurants into the system" for more information about why using Factual).
+ * Yeoman was used to start the frontend app.
+ * Angular and coffee script are used to code the app.
+ * Grunt was used during the development of the frontend app, and also for the distribution of it.
+
 
 ## Dev Installation
 
-Create a virtual env with virtualenv wrapper
+For this installation precedure we will assume that you have the following packeges already installed and configured in your system: python, [pip](https://pypi.python.org/pypi/pip), [virtualenvwrapper](https://virtualenvwrapper.readthedocs.org/)
+
+Create a virtual env with virtualenvwrapper
 
     $ mkvirtualenv resto
 
@@ -32,8 +64,7 @@ Create a superuser:
 
     $ ./manage.py createsuperuser
 
-Enter username, email and password
-
+Enter username, email and password, as needed.
 
 Import Restaurants (This command will only import 500 restaurants to the system, after that it will raise an error, see section "Import Restaurants into the system" for more info):
 
@@ -94,23 +125,11 @@ In the test pages users can:
 To run the backend test just type:
 
     $ ./manage.py test
-
-
-## Technology
- * Django and Python are used in the backend.
- * Django Rest Framework is used to build the API.
- * Django Swagger was installed to provide a better documentation for the API.
- * Django-vote is used to manage the thumbs down functionality.
- * Factory-boy is used to simplify the testing of the models, and can be used in the future for performance tests.
- * Factual app is used as an adapter to communicate with Factual.com API and retreive the restaurants (see section "Import Restaurants into the system" for more information about why using Factual).
- * Yeoman was used to start the frontend app.
- * Angular and coffee script are used to code the app.
- * Grunt was used during the development of the frontend app, and also for the distribution of it.
-
+    
 
 ## About the API
-The API is built on django rest framework.
-The endpoints were designed to minimize the amount of requests made to the backend.
+All API endpoints are created with django_rest_framework. It provides an easy solid way to implement API. It also has as self documented doc to instrospect all endpoints.
+Endpoints were designed to minimize the amount of requests made to the backend.
 The main endpoint is /restaurants/restaurant/ that will return a page (of 10 elements) with almost all the information needed to display a list of restaurants, with visitor comments, etc
 The API also has other endpoint to create comments, votes, visits, etc. Almost all of them are based on the Django Model which reduce the amount of code and logic on the system.
 
@@ -123,7 +142,7 @@ Using a third party API was the best solution in order to focus on the problem o
 For future references: The list of restaurant retreive from Factual.com is sorted by "placerank": http://developer.factual.com/search-placerank-and-boost/#placerank
 
 
-## Frontend App for testing:
+## Frontend App:
 In resto-ui folder you will find the frontend app to test the application.
 The distribution folder of the front-end app is already included and linked in the static folder of the repo, but if you need to work on it, you can do this:
 To install it and run it you need to:
@@ -141,9 +160,22 @@ You might need to upgrade your compass gem. In that case run:
 
     $ sudo gem install compass --pre
 
-
 Then run the app with grunt:
 
     $ grunt serve
 
 Note: you need to have the Django App running on a different terminal to see the Front-end app working.
+
+## Next Steps (To Do)
+ * Add celery task to the list of restaurants updated using the factual API
+ * Import georefernces of restaurants and expose those fields in the API
+ * Include GeoDjango to the project to make GeoSpatials queries and found the closest restaruants
+ * Build a good Front-end application, with:
+  * with better look & feel 
+  * Unit and functional tests
+  * Add Login/Logout
+  * Add functionality to edit/delete comments, visits, etc.
+  * Add Google Map to show restaurants location in the details.
+  * Add GeoSpatials search.
+ * Etc
+ 
