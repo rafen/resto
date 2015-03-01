@@ -31,6 +31,48 @@ The client is a one page application built on Angular + Coffescript.
  * Angular and coffee script are used to code the app.
  * Grunt was used during the development of the frontend app, and also for the distribution of it.
 
+## Usage:
+
+See demo video here: [http://youtu.be/Mn78aR2Hxho](http://youtu.be/Mn78aR2Hxho)
+
+The system has Django Back-end, a landing page served by Django and a static app that use the endpoints provided by the backend.
+To start using the system you can visit the landing page served by Django at:
+
+    http://localhost:8000
+
+### Landing: http://localhost:8000
+![Landing Page](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Landing.png)
+
+There you will find links to navigate to the other pages and apps
+
+### Django Admin: http://localhost:8000/admin/
+Standard Django Admin to mange models and create users
+
+### Browse API Doc: http://localhost:8000/api-docs/
+![Django Swagger for Rest framework](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-API-Doc.png)
+
+### Test Client site: http://localhost:8000/static/ui/index.html#/
+Search Page of restaurants
+![Search page of restaurants](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Search.png)
+
+Restaurants detail page
+![Restaurant detail page](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Details.png)
+
+### Loging:
+In order to use the test site you need to be logged in (if not you won't be able to modify any data). To do that you can use the links provided on the site or use this link: http://localhost:8000/api-auth/login/?next=/
+
+In the test pages users can:
+
+ * Login / Logout
+ * See a list of restaurants (paginated by 10)
+ * Search by type of cuisine and name of the restaurant
+ * Order restaurant list by ID, name, Thumbs down, and rating. To do this a user needs to click on the table head, if a user clicks again the ordering is removed. Thumbs down column is order incrementally, so if a user click on it he won't see Restaurants with Thumbs down at the top.
+ * See the details of a restaurant. If a user click on the name of a restaurant, the page will scroll down and the details of the restaurant will be shown.
+ * In the details of a restaurant a user can:
+  * Thumbs Down/Up the restaurant (the Up only works as an undo of the thumbs down)
+  * Mark the restaurant as vistied
+  * Leave a comment (the comment will be displayed at the top of the comment list)
+
 
 ## Dev Installation
 
@@ -80,53 +122,13 @@ Visit the backend test landing page by opening your browser at
     http://localhost:8000
 
 
-## Usage:
-
-The system has Django Back-end, a landing page served by Django and a static app that use the endpoints provided by the backend.
-To start using the system you can visit the landing page served by Django at:
-
-    http://localhost:8000
-
-### Landing: http://localhost:8000
-![Landing Page](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Landing.png)
-
-There you will find links to navigate to the other pages and apps
-
-### Django Admin: http://localhost:8000/admin/
-Standard Django Admin to mange models and create users
-
-### Browse API Doc: http://localhost:8000/api-docs/
-![Django Swagger for Rest framework](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-API-Doc.png)
-
-### Test Client site: http://localhost:8000/static/ui/index.html#/
-Search Page of restaurants
-![Search page of restaurants](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Search.png)
-
-Restaurants detail page
-![Restaurant detail page](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Details.png)
-
-### Loging:
-In order to use the test site you need to be logged in (if not you won't be able to modify any data). To do that you can use the links provided on the site or use this link: http://localhost:8000/api-auth/login/?next=/
-
-In the test pages users can:
-
- * Login / Logout
- * See a list of restaurants (paginated by 10)
- * Search by type of cuisine and name of the restaurant
- * Order restaurant list by ID, name, Thumbs down, and rating. To do this a user needs to click on the table head, if a user clicks again the ordering is removed. Thumbs down column is order incrementally, so if a user click on it he won't see Restaurants with Thumbs down at the top.
- * See the details of a restaurant. If a user click on the name of a restaurant, the page will scroll down and the details of the restaurant will be shown.
- * In the details of a restaurant a user can:
-  * Thumbs Down/Up the restaurant (the Up only works as an undo of the thumbs down)
-  * Mark the restaurant as vistied
-  * Leave a comment (the comment will be displayed at the top of the comment list)
-
 ## Running tests
 
 To run the backend test just type:
 
     $ ./manage.py test
     
-
+    
 ## About the API
 All API endpoints are created with django_rest_framework. It provides an easy solid way to implement API. It also has as self documented doc to instrospect all endpoints.
 Endpoints were designed to minimize the amount of requests made to the backend.
