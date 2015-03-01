@@ -56,15 +56,28 @@ To start using the system you can visit the landing page served by Django at:
 
     http://localhost:8000
 
-There you will find links to navigate to:
+### Landing: http://localhost:8000
+![Landing Page](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Landing.png)
 
-Django Admin: http://localhost:8000/admin/
-Browse API Doc: http://localhost:8000/api-docs/
-Visit the test site: http://localhost:8000/static/ui/index.html#/
+There you will find links to navigate to the other pages and apps
 
+### Django Admin: http://localhost:8000/admin/
+Standard Django Admin to mange models and create users
+
+### Browse API Doc: http://localhost:8000/api-docs/
+![Django Swagger for Rest framework](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-API-Doc.png)
+
+### Test Client site: http://localhost:8000/static/ui/index.html#/
+Search Page of restaurants
+![Search page of restaurants](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Search.png)
+
+Restaurants detail page
+![Restaurant detail page](https://dl.dropboxusercontent.com/u/14133267/resto/Resto-Details.png)
+
+### Loging:
 In order to use the test site you need to be logged in (if not you won't be able to modify any data). To do that you can use the links provided on the site or use this link: http://localhost:8000/api-auth/login/?next=/
 
-In the test pages a users can:
+In the test pages users can:
 
  * Login / Logout
  * See a list of restaurants (paginated by 10)
